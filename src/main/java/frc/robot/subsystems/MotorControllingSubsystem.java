@@ -18,15 +18,20 @@ public class MotorControllingSubsystem extends SubsystemBase {
   private DifferentialDrive m_drive;
   /** Creates a new MotorControllingSubsystem. */
   public MotorControllingSubsystem() {
-    m_frontLeft = new CANSparkMax(1, MotorType.kBrushless);
-    m_backLeft = new CANSparkMax(2, MotorType.kBrushless);
-    m_frontRight = new CANSparkMax(3, MotorType.kBrushless);
-    m_backRight = new CANSparkMax(4, MotorType.kBrushless);
+    m_frontLeft = new CANSparkMax(3, MotorType.kBrushless);
+    m_backLeft = new CANSparkMax(4, MotorType.kBrushless);
+    m_frontRight = new CANSparkMax(2, MotorType.kBrushless);
+    m_backRight = new CANSparkMax(1, MotorType.kBrushless);
     m_frontLeft.setInverted(true);
     m_backLeft.setInverted(true);
     m_backLeft.follow(m_frontLeft);
     m_backRight.follow(m_frontRight);
     m_drive = new DifferentialDrive(m_frontLeft, m_frontRight);
+    m_frontLeft.setSmartCurrentLimit(40);
+    m_frontLeft.setOpenLoopRampRate(0.2);
+    m_frontRight.setSmartCurrentLimit(40);
+    m_frontRight.setOpenLoopRampRate(0.2);
+    
   }
   public void tankDrive(double leftSpeed, double rightSpeed){
     m_drive.tankDrive(leftSpeed, rightSpeed);

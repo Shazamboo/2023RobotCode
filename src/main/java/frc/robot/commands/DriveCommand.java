@@ -32,7 +32,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.tankDrive(m_stick.getRawAxis(1), m_stick.getRawAxis(3));
+    m_subsystem.tankDrive(m_stick.getRawAxis(1), m_stick.getRawAxis(5));
   }
   // Called once the command ends or is interrupted.
   @Override
