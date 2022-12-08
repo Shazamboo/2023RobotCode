@@ -43,9 +43,6 @@ public class MotorControllingSubsystem extends SubsystemBase {
     m_frontLeft.setOpenLoopRampRate(0.2);
     m_frontRight.setSmartCurrentLimit(40);
     m_frontRight.setOpenLoopRampRate(0.2);
-
-
-    
   }
   public void tankDrive(double leftSpeed, double rightSpeed){
     m_drive.tankDrive(leftSpeed, rightSpeed);
