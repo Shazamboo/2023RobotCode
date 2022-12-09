@@ -6,6 +6,10 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.KitbotGearing;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.KitbotMotor;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.KitbotWheelSize;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -47,6 +51,12 @@ public class MotorControllingSubsystem extends SubsystemBase {
   public void tankDrive(double leftSpeed, double rightSpeed){
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
+  private DifferentialDrivetrainSim m_driveSim = DifferentialDrivetrainSim.createKitbotSim(
+    KitbotMotor.kDualCIMPerSide, // 2 CIMs per side.
+    KitbotGearing.k10p71,        // 10.71:1
+    KitbotWheelSize.kSixInch,    // 6" diameter wheels.
+    null                         // No measurement noise.
+  );
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Front Left", m_frontLeftEncoder.getPosition());
