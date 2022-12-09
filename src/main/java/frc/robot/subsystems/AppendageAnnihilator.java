@@ -8,14 +8,12 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; 
 public class AppendageAnnihilator extends SubsystemBase {
   private CANSparkMax m_appendageAnnihilator;
   private SparkMaxPIDController m_PIDController;
-  private Boolean toggle;
-  private Joystick button;
+  private boolean toggle;
   /** Creates a new AppendageAnnihilator. */
   public AppendageAnnihilator() {
     m_appendageAnnihilator = new CANSparkMax(5, MotorType.kBrushless);
@@ -32,12 +30,11 @@ public class AppendageAnnihilator extends SubsystemBase {
     m_PIDController.setReference(0, CANSparkMax.ControlType.kPosition);
   }
   public void moveAnnihilator(){
+    toggle ^= true;
     if (toggle) {
       m_PIDController.setReference(50, CANSparkMax.ControlType.kPosition);
-      toggle = false;
     } else if (toggle == false) {
       m_PIDController.setReference(0, CANSparkMax.ControlType.kPosition);
-      toggle = true;
     }
   }
 
